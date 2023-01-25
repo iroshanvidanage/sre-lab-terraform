@@ -3,15 +3,20 @@ easy to undersatand */
 
 #configuration objects
 provider "aws" {
-    region = "ap-south-1"
+  region = "ap-south-1"
 }
 
 resource "aws_instance" "iroshanv-devops-srelab-ec2" {
-    ami = "ami-020916b60b78f7108"#ami used to create the ec2
-    instance_type = "c6g.medium" #ec2_instance_type
+  ami           = "ami-020916b60b78f7108" #ami used to create the ec2
+  instance_type = "c6g.medium"            #ec2_instance_type
 
-    tags = {
-        Name = "srelab-ec2"
-        Environment = "Dev" #can_be_uat_qa_prod
-    }
+  tags = {
+    Name        = "srelab-ec2"
+    Environment = "Dev" #can_be_uat_qa_prod
+  }
+}
+
+resource "aws_eip" "iroshanv-devops-srelab-ec2" {
+  instance = aws_instance.iroshanv-devops-srelab-ec2.id
+
 }
