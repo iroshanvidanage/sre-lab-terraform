@@ -9,3 +9,6 @@
     - https://github.com/zealvora/terraform-beginner-to-advanced-resource
 
 
+## Authentication
+
+- Create a user for the terraform to access AWS services.
