@@ -29,10 +29,10 @@ variable "ami" {
 variable "instance_type" {
   type        = string
   description = "AWS instance type"
-  default     = "c6g.medium"
+  default     = "t2.micro"
 }
 
 variable "instance_properties" {
   description = "ami & ec2 type"
-  default     = ["ami-020916b60b78f7108", "c6g.medium"]
+  default     = ["ami-020916b60b78f7108", "t2.micro"]
 }
