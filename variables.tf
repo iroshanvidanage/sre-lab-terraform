@@ -36,3 +36,9 @@ variable "instance_properties" {
   description = "ami & ec2 type"
   default     = ["ami-020916b60b78f7108", "t2.micro"]
 }
+
+variable "token" {
+  description = "github token"
+  default     = "GITHUB_TOKEN"
+
+}

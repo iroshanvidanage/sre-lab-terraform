@@ -12,3 +12,45 @@
 ## Authentication
 
 - Create a user for the terraform to access AWS services.
+
+
+## Terraform provider versioning
+
+| Version Number Arguments | Description |
+| --------- | ---------|
+| `"3.70"` | Explicitly mentioned version |
+|`">=1.0"` | Greater than equal to the version |
+| `"<=1.0"` | Less than equal to the version |
+| `"~>2.0"` | Any version in the 2.X range |
+| `">=2.10,<=2.30"` | Any version in between 2.10 and 2.30 |
+
+- When `terraform init` is executed it will check for the dependency lock file _.terraform.lock.hcl_ file where the constraints for the providers are configured when the repo was initialized for the first time.
+> - To change this we need to delete the file and re initialize the repo with the changes to the provider constraints.
+
+- Else can execute `terraform init -upgrade` which will update the _.terraform.lock.hcl_ file with new configuration.
+
+## Terraform commands
+
+- `terraform init` initializes the terraform repo and installs the providers.
+- `terraform fmt` formats the terraform code base to a alligned code base.
+- `terraform plan` plans and shows what're the intended changes to be applied.
+- `terraform apply` applies the planned changes.
+- `terraform destroy` destroy all the infrastructure created from the code base.
+
+### Terraform Destroy
+
+- `terraform destroy -target aws_instance.iroshanv-devops-srelab-ec2` this will only destroy the target instance.
+
+## Desired and Current State
+
+- Desired state is the state defined in the terraform code.
+- Current state is the state of the infrastructure. This may not be always equal to the desired state
+- As manual interventions can happen, the current state could have been changed.
+- Once the terraform apply is executed again, the current state will be changed to the desired state.
+
+> - Desired state is defined as the code we have declared in the repo. If there's only ami and instance_type is declared, the security group is not a desired value.
+> - Therefore, whenever declaring resources should declare every aspect of that particular resource.
+
+## Terraform refresh
+
+- `terraform refresh` 
