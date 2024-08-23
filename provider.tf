@@ -8,7 +8,7 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 5.0"
     }
-/*
+    /*
     azurerm = {
       source  = "hashicorp/azurerm"
       version = "=3.0.0"
@@ -17,7 +17,7 @@ terraform {
 
     /* for partnet / community providers need to define this providers block 
     explicitly before using the provider plugins */
-/*
+    /*
     digitalocean = {
       source = "digitalocean/digitalocean"
     }
