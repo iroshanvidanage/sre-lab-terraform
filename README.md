@@ -13,6 +13,38 @@
 
 - Create a user for the terraform to access AWS services.
 
+- Storing access keys and secrets on the provider block
+
+```terraform
+provider "aws" {
+    shared_config_files = ["path/to/config"]
+    shared_cred_files   = ["path/to/creds"]
+    profile             = "custom"
+}
+```
+
+- If these were not defined, by default aws provider will check for the following paths;
+> On Linux and MacOS
+> - @HOME/.aws/config
+> - @HOME/.aws/credentials
+
+> On Windows
+> - "%USERPROFILE%\\.aws\config"
+> - "%USERPROFILE%\\.aws\credentials"
+
+- Provider specific credential / authentication - AWS
+
+```terraform
+provider "aws" {
+    assume_role {
+        role_arn        = "arn:aws:iam::123456789:role/ROLE_NAME"
+        session_name    = "SESSION_NAME"
+        external_id     = "EXTERNAL_ID"
+    }
+}
+```
+
+
 
 ## Terraform provider versioning
 
@@ -37,6 +69,10 @@
 - `terraform apply` applies the planned changes.
 - `terraform destroy` destroy all the infrastructure created from the code base.
 
+## Terraform Apply
+
+- `terrafome apply -auto-approve` will auto approve the apply and no need for manula interactions for applying changes.
+
 ### Terraform Destroy
 
 - `terraform destroy -target aws_instance.iroshanv-devops-srelab-ec2` this will only destroy the target instance.
@@ -51,6 +87,10 @@
 > - Desired state is defined as the code we have declared in the repo. If there's only ami and instance_type is declared, the security group is not a desired value.
 > - Therefore, whenever declaring resources should declare every aspect of that particular resource.
 
+
 ## Terraform refresh
 
-- `terraform refresh` 
+- `terraform refresh` is used to update the state file about the current state of the deployed infrastructure.
+- When executing plan / apply this will be executed automatically no need to explicitly execute it everytime.
+- This is dangerous to execute cause it could empty out the tfstate file completely.
+- In newer versions `-refresh-only` option can be run since `refresh` has been deprecated.
