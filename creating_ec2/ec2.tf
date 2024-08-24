@@ -15,3 +15,9 @@ resource "aws_eip" "iroshanv-devops-srelab-ec2" {
   instance = aws_instance.iroshanv-devops-srelab-ec2.id
 
 }
+
+variable "ami" {
+  type        = string
+  description = "AWS Machine Image"
+  default     = "ami-020916b60b78f7108"
+}
