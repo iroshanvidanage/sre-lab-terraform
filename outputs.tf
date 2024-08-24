@@ -4,7 +4,7 @@
 # outputs are used to expose the values inside a module for other tf configurations
 
 output "ami" {
-    value = var.ami
+  value = var.ami
 }
 
 output "instance_properties" {
