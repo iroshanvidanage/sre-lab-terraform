@@ -94,3 +94,10 @@ provider "aws" {
 - When executing plan / apply this will be executed automatically no need to explicitly execute it everytime.
 - This is dangerous to execute cause it could empty out the tfstate file completely.
 - In newer versions `-refresh-only` option can be run since `refresh` has been deprecated.
+
+
+## Attributes
+
+- Are the fields in a resource that holds the values that ends up in the state.
+- In the resource documents attributes of that particular resource block can be found at the end.
+- Easy to find in the state file.
