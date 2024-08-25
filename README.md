@@ -122,3 +122,7 @@ module "module_name" {
 ## Variables
 
 - Static values can be stored as variable where repeatedly apply in the code.
+- Maintain *.tfvars files for multiple environments.
+- Default tfvars file name is _terraform.tfvars_ no need to mention the file name, terraform will automatically load values from it.
+- When executing terraform command for plan/apply `terraform plan -var-file="prod.tfvars"` used to define which tfvars to be used here.
+- In variables if we have configured a default value, it'll only be used if we haven't explicitly configured an enviranment specific value for the variable.

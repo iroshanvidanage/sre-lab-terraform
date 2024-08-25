@@ -57,10 +57,10 @@ resource "aws_vpc_security_group_ingress_rule" "allow-eip" {
 
 resource "aws_vpc_security_group_ingress_rule" "allow-app-traffic" {
   security_group_id = aws_security_group.terraform-sg.id
-  ip_protocol = "tcp"
-  cidr_ipv4 = module.main.public-subnet-1
-  from_port = module.main.app-port
-  to_port = module.main.app-port
+  ip_protocol       = "tcp"
+  cidr_ipv4         = module.main.public-subnet-1
+  from_port         = module.main.app-port
+  to_port           = module.main.app-port
 }
 
 # outbound rules

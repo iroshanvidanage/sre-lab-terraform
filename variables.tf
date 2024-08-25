@@ -12,7 +12,6 @@ variable "secret_key" {
 variable "region" {
   type        = string
   description = "The AWS region"
-  default     = "ap-south-1"
 }
 
 variable "region_list" {
@@ -23,7 +22,6 @@ variable "region_list" {
 variable "ami" {
   type        = string
   description = "AWS Machine Image"
-  default     = "ami-020916b60b78f7108"
 }
 
 variable "instance_type" {
@@ -34,7 +32,7 @@ variable "instance_type" {
 
 variable "instance_properties" {
   description = "ami & ec2 type"
-  default     = ["ami-020916b60b78f7108", "t2.micro"]
+  default     = ["var.ami", "t2.micro"]
 }
 
 variable "token" {
@@ -45,14 +43,10 @@ variable "token" {
 
 variable "vpc-ip" {
   description = "vpc cidr range"
-  type = string
-  default = "172.20.192.0./22" # 4 subnets
+  # 4 subnets
 }
 
-variable "public-subnet-1" {
-  type = string
-  default = "172.20.192.0/24"
-}
+variable "public-subnet-1" {}
 
 variable "app-port" {
   default = 8080
