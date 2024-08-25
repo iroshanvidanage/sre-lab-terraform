@@ -2,6 +2,10 @@ module "eip" {
   source = "../creating_ec2"
 }
 
+module "main" {
+  source = "../"
+}
+
 resource "aws_security_group" "terraform-sg" {
   name        = "terraform-sg"
   description = "managed security group from terraform"
@@ -49,6 +53,14 @@ resource "aws_vpc_security_group_ingress_rule" "allow-eip" {
   cidr_ipv4 = "${module.eip.eip-address}/32" # string interpolation
   from_port = 7000                           # starting port
   to_port   = 7010                           # ending port
+}
+
+resource "aws_vpc_security_group_ingress_rule" "allow-app-traffic" {
+  security_group_id = aws_security_group.terraform-sg.id
+  ip_protocol = "tcp"
+  cidr_ipv4 = module.main.public-subnet-1
+  from_port = module.main.app-port
+  to_port = module.main.app-port
 }
 
 # outbound rules

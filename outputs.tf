@@ -10,3 +10,11 @@ output "ami" {
 output "instance_properties" {
   value = var.instance_properties
 }
+
+output "public-subnet-1" {
+  value = var.public-subnet-1
+}
+
+output "app-port" {
+  value = var.app-port
+}

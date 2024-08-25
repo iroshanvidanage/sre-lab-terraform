@@ -61,6 +61,7 @@ provider "aws" {
 
 - Else can execute `terraform init -upgrade` which will update the _.terraform.lock.hcl_ file with new configuration.
 
+
 ## Terraform commands
 
 - `terraform init` initializes the terraform repo and installs the providers.
@@ -76,6 +77,7 @@ provider "aws" {
 ### Terraform Destroy
 
 - `terraform destroy -target aws_instance.iroshanv-devops-srelab-ec2` this will only destroy the target instance.
+
 
 ## Desired and Current State
 
@@ -116,3 +118,7 @@ module "module_name" {
     source = "path/to/module"
 }
 ```
+
+## Variables
+
+- Static values can be stored as variable where repeatedly apply in the code.

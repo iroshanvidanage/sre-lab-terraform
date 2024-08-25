@@ -42,3 +42,18 @@ variable "token" {
   default     = "GITHUB_TOKEN"
 
 }
+
+variable "vpc-ip" {
+  description = "vpc cidr range"
+  type = string
+  default = "172.20.192.0./22" # 4 subnets
+}
+
+variable "public-subnet-1" {
+  type = string
+  default = "172.20.192.0/24"
+}
+
+variable "app-port" {
+  default = 8080
+}
