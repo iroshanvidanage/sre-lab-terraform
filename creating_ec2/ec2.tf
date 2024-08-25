@@ -14,8 +14,3 @@ resource "aws_instance" "iroshanv-devops-srelab-ec2" {
     Environment = "Dev" #can_be_uat_qa_prod
   }
 }
-
-resource "aws_eip" "iroshanv-devops-srelab-ec2" {
-  instance = aws_instance.iroshanv-devops-srelab-ec2.id
-
-}

@@ -101,3 +101,18 @@ provider "aws" {
 - Are the fields in a resource that holds the values that ends up in the state.
 - In the resource documents attributes of that particular resource block can be found at the end.
 - Easy to find in the state file.
+- *`resource.resource_name.attribute`* is the convention used.
+
+> - In _cross resource attribute referencing_, terraform will automatically understands the order of resources should be created.
+
+
+## Output Values
+
+- The values will be made available to the terminal window and expose them so other terraform configurations can use them.
+- Modules use output values when exporting data
+
+```terraform
+module "module_name" {
+    source = "path/to/module"
+}
+```

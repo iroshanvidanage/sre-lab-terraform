@@ -1,3 +1,7 @@
+module "eip" {
+  source = "../creating_ec2"
+}
+
 resource "aws_security_group" "terraform-sg" {
   name        = "terraform-sg"
   description = "managed security group from terraform"
@@ -32,6 +36,19 @@ resource "aws_vpc_security_group_ingress_rule" "allow-ftp-data" {
   cidr_ipv4         = "172.20.192.0/24"
   from_port         = 7000 # starting port
   to_port           = 7010 # ending port
+}
+
+resource "aws_vpc_security_group_ingress_rule" "allow-eip" {
+  security_group_id = aws_security_group.terraform-sg.id
+  ip_protocol       = "tcp"
+  /* in sg-rules need to specify the cidr mask(block/the mask) to the ip
+  first need to compute the value
+  then add the mask to the computed value
+  for this need string interpolation
+  */
+  cidr_ipv4 = "${module.eip.eip-address}/32" # string interpolation
+  from_port = 7000                           # starting port
+  to_port   = 7010                           # ending port
 }
 
 # outbound rules
