@@ -35,3 +35,13 @@ resource "aws_instance" "third-instance" {
     Name = "payments-system-${count.index}"
   }
 }
+
+resource "aws_instance" "fourth-instance" {
+  ami           = module.variables.ami
+  instance_type = module.variables.env == "dev" ? module.variables.instance_types_regions_list[1] : module.variables.instance_types_regions_list[0]
+}
+
+resource "aws_instance" "fifth-instance" {
+  ami           = module.variables.ami
+  instance_type = module.variables.env == "dev" && module.variables.region == "ap-south-1" ? module.variables.instance_types_regions_list[1] : module.variables.instance_types_regions_list[0]
+}

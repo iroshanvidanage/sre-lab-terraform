@@ -26,3 +26,11 @@ output "instance_types_regions_list" {
 output "instance_types_regions_map" {
   value = var.instance_types_regions_map
 }
+
+output "env" {
+  value = var.env
+}
+
+output "region" {
+  value = var.region
+}

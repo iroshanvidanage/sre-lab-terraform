@@ -71,3 +71,7 @@ variable "dev-users" {
   type    = list(any)
   default = ["iroshan", "akalanka", "thuji"]
 }
+
+variable "env" {
+  default = "dev"
+}

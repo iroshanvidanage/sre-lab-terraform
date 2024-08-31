@@ -195,3 +195,8 @@ module "module_name" {
 
 - `count.index` holds a distinct index number, starting from 0.
 - Each resource will have a unique index.
+
+
+## Conditional Expressions
+
+- _condition ? true\_value : false\_value_ - similar to if conditions
