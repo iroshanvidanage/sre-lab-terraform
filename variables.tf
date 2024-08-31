@@ -51,3 +51,18 @@ variable "public-subnet-1" {}
 variable "app-port" {
   default = 8080
 }
+
+variable "instance_types_regions_list" {
+  type    = list(any)
+  default = ["t3.micro", "t3.small", "c2.medium"] # list starts with position 0
+}
+
+variable "instance_types_regions_map" {
+  type = map(any)
+  default = {
+    us-east-1      = "t3.micro"
+    us-west-1      = "t3.small"
+    eu-west-2      = "c2.medium"
+    ap-southeast-1 = "m5.large"
+  }
+}

@@ -18,3 +18,11 @@ output "public-subnet-1" {
 output "app-port" {
   value = var.app-port
 }
+
+output "instance_types_regions_list" {
+  value = var.instance_types_regions_list
+}
+
+output "instance_types_regions_map" {
+  value = var.instance_types_regions_map
+}

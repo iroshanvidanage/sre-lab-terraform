@@ -12,5 +12,15 @@ resource "aws_instance" "iroshanv-devops-srelab-ec2" {
   tags = {
     Name        = "srelab-ec2"
     Environment = "Dev" #can_be_uat_qa_prod
-  } # tags are map data type
+  }                     # tags are map data type
+}
+
+resource "aws_instance" "secondary-instance" {
+  ami           = module.variables.ami
+  instance_type = module.variables.instance_types_regions_list[1]
+}
+
+resource "aws_instance" "third-instance" {
+  ami           = module.variables.ami
+  instance_type = module.variables.instance_types_regions_map["us-east-1"]
 }

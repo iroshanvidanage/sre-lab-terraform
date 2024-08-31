@@ -177,4 +177,7 @@ module "module_name" {
     - For list, can restrict the type of values to be included in lists.
     >    `type = list(number)` \-\> list = ["1","2","3"]
 
-- Map type has key value pairs and has curly brackets. 
+- Map type has key value pairs and has curly brackets.
+
+
+### Fetching / Referencing data from Maps and Lists
