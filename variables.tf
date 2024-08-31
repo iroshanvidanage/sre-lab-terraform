@@ -16,11 +16,11 @@ variable "region" {
 
 variable "region_list" {
   description = "AWS availability zones"
-  default     = ["ap-south-1a", "ap-south-1b"]
+  default     = ["ap-south-1a", "ap-south-1b"] # list data types
 }
 
 variable "ami" {
-  type        = string
+  type        = string # restricting value to a string value type
   description = "AWS Machine Image"
 }
 

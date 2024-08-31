@@ -165,4 +165,16 @@ module "module_name" {
     - terraform.tfvars
     - Environment variables
 > The default values assigned when variables are declared will always be overridden if any of the above type exists.
-    
+
+
+## Data Types
+
+- Can restrict variable value to Data Type. 
+- `type=` is used to restrict the value type.
+>   The error will be `Error: Invalid value for input variable`
+- Even attributes has value types. Can be seen in the argument references.
+- List type can have one or multiple values at a time. has squre brackets.
+    - For list, can restrict the type of values to be included in lists.
+    >    `type = list(number)` \-\> list = ["1","2","3"]
+
+- Map type has key value pairs and has curly brackets. 
