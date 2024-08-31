@@ -181,3 +181,17 @@ module "module_name" {
 
 
 ### Fetching / Referencing data from Maps and Lists
+
+
+## COUNT Meta-Argument
+
+- Used to create the identical resources repeatedly (multiple), example 30 ec2 instances.
+- Not restricted to ec2, but other resources as well.
+- Depending on the amount of resources being created, it might be hard to handle the instances. Hence will need some level of customizations.
+- Some resources have uniqueness in their resources and, need to have a unique identifier/name.
+
+
+### COUNT.INDEX
+
+- `count.index` holds a distinct index number, starting from 0.
+- Each resource will have a unique index.

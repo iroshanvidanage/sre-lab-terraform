@@ -23,4 +23,15 @@ resource "aws_instance" "secondary-instance" {
 resource "aws_instance" "third-instance" {
   ami           = module.variables.ami
   instance_type = module.variables.instance_types_regions_map["us-east-1"]
+  count         = 5 # will create 5 identtical resources
+
+  # this will only assign the same name to resources
+  /*
+  tags = {
+    Name = "payments-system"
+  }*/
+
+  tags = {
+    Name = "payments-system-${count.index}"
+  }
 }

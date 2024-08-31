@@ -66,3 +66,8 @@ variable "instance_types_regions_map" {
     ap-southeast-1 = "m5.large"
   }
 }
+
+variable "dev-users" {
+  type    = list(any)
+  default = ["iroshan", "akalanka", "thuji"]
+}
