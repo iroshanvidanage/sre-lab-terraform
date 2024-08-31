@@ -200,3 +200,10 @@ module "module_name" {
 ## Conditional Expressions
 
 - _condition ? true\_value : false\_value_ - similar to if conditions
+
+
+## Functions
+
+- Built-in Functions :- which are already defined in the framework itself.
+- Can be used to farious functions to be executed within the Terraform code.
+- Terraform doesn't support user defined functions.

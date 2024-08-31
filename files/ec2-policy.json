@@ -1,0 +1,22 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Action": "*",
+            "Effect": "Denied",
+            "Resource":"*"
+        },
+        {
+            "Action": "*",
+            "Effect": "Allow",
+            "Resource":"*",
+            "Condition": {
+                "StringEquals": {
+                  "iam:role-name": [
+                    "Role-name-aws"
+                  ]
+                }
+            }
+        }
+    ]
+}
