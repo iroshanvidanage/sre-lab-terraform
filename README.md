@@ -122,7 +122,47 @@ module "module_name" {
 ## Variables
 
 - Static values can be stored as variable where repeatedly apply in the code.
-- Maintain *.tfvars files for multiple environments.
+
+
+### Declaring in variables file
+
 - Default tfvars file name is _terraform.tfvars_ no need to mention the file name, terraform will automatically load values from it.
+
+
+### Declaring environment specific variables
+
+- Maintain *.tfvars files for multiple environments.
 - When executing terraform command for plan/apply `terraform plan -var-file="prod.tfvars"` used to define which tfvars to be used here.
 - In variables if we have configured a default value, it'll only be used if we haven't explicitly configured an enviranment specific value for the variable.
+
+
+### Declaring variables in CLI
+
+- If we havn't declared a value for a variable, terraform will ask to enter a value when plan / apply is being executed.
+- `terraform plan -var="instance_type=m5.large"` this way, terraform won't prompt to ask for undeclared variables.
+
+
+### Environment Variables
+
+- `TF_VAR_variable` This is the standard env variables in Terraform. For _instance\_type_ variable it should be `TF_VAR_instance_type`
+
+> In linux `printenv` will print all the env variables
+>   - `export TF_VAR_instance_type=m5.large`
+
+> In Windows `echo $env:path` `echo $env:JAVA_PATH`
+>   - In case the environment variable label contains characters otherwise interpreted as bareword token terminators (like `.` or `-` or ` `), qualify the variable path expression with {...}:
+>>  `${env:MINISHIFT-USERNAME}`
+>   - Can also enumerate all variables via the `env` drive:
+>>  `Get-ChildItem env:`
+
+
+### Variable definition Precedence
+
+- Terraform loads variables in the following order highest precedence will be the first one
+    - -var / -var-file options on the cli.
+    - *.auto.tfvars / *.auto.tfvars.json processed in lexical order
+    - terraform.tfvars.json
+    - terraform.tfvars
+    - Environment variables
+> The default values assigned when variables are declared will always be overridden if any of the above type exists.
+    
