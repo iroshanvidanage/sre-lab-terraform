@@ -8,11 +8,13 @@ resource "aws_iam_user" "payments-user" {
 resource "aws_iam_user" "dev-user-id" {
   name  = var.dev-users[count.index]
   count = length(var.dev-users)
+  tags  = local.dev_tags # using local values
 }
 
 resource "aws_iam_user" "dev-user-name" {
   name  = "dev-user-${var.dev-users[count.index]}"
   count = length(var.dev-users)
+  tags  = merge(local.common_tags, local.dev_tags)
 }
 
 resource "aws_iam_user_policy" "dev-user" {

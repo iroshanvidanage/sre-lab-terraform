@@ -207,3 +207,10 @@ module "module_name" {
 - Built-in Functions :- which are already defined in the framework itself.
 - Can be used to farious functions to be executed within the Terraform code.
 - Terraform doesn't support user defined functions.
+
+
+## Local Values
+
+- Locals are used to centrally store common data.
+- In a sense similar to variables, but can do more in locals.
+- But in locals can add expressions, which allows you to compute values dynamically.

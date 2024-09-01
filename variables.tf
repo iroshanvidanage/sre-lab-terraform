@@ -75,3 +75,11 @@ variable "dev-users" {
 variable "env" {
   default = "dev"
 }
+
+# defining tags as variables is okay, but better to declare in locals
+variable "tags" {
+  type = map(any)
+  default = {
+    Environment = "Development"
+  }
+}
