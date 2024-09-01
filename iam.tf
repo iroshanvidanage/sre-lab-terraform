@@ -7,17 +7,18 @@ resource "aws_iam_user" "payments-user" {
 
 resource "aws_iam_user" "dev-user-id" {
   name  = var.dev-users[count.index]
-  count = 3
+  count = length(var.dev-users)
 }
 
 resource "aws_iam_user" "dev-user-name" {
   name  = "dev-user-${var.dev-users[count.index]}"
-  count = 3
+  count = length(var.dev-users)
 }
 
 resource "aws_iam_user_policy" "dev-user" {
-  name = "dev-user-policy"
-  user = aws_iam_user.dev-user-id
+  count = length(var.dev-users)
+  name  = "dev-user-policy"
+  user  = element(var.dev-users, count.index)
   policy = jsonencode({
     "Version" : "2012-10-17",
     "Statement" : [
@@ -44,7 +45,8 @@ resource "aws_iam_user_policy" "dev-user" {
 
 # file function can be used to pass data stored in files as input variables.
 resource "aws_iam_user_policy" "dev-user-2" {
+  count  = length(var.dev-users)
   name   = "dev-user-policy-2"
-  user   = aws_iam_user.dev-user-id
+  user   = "dev-user-${element(var.dev-users, count.index)}"
   policy = file("./files/ec2-policy.json")
 }
