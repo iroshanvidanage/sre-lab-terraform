@@ -214,3 +214,15 @@ module "module_name" {
 - Locals are used to centrally store common data.
 - In a sense similar to variables, but can do more in locals.
 - But in locals can add expressions, which allows you to compute values dynamically.
+
+
+## Data Sources
+
+- Allow Terraform to use / fetch info defined outside of Terraform
+- When using data sources, always refere to the documentation.
+
+
+### Filters
+
+- Used to filter out a specific or a group of recources to be used by data resources.
+- 

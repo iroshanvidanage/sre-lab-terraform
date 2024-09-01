@@ -34,3 +34,19 @@ output "env" {
 output "region" {
   value = var.region
 }
+
+output "ds_iam_user" {
+  value = data.aws_iam_user.user-iroshan.arn
+}
+
+
+output "ds_vpc" {
+  value = data.aws_vpc.default.cidr_block
+}
+output "ds_file" {
+  value = data.local_file.test.content
+}
+
+output "ds_aws_ami" {
+  value = data.aws_ami.amazon_linux_latest.id
+}

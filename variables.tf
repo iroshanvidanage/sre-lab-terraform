@@ -64,6 +64,7 @@ variable "instance_types_regions_map" {
     us-west-1      = "t3.small"
     eu-west-2      = "c2.medium"
     ap-southeast-1 = "m5.large"
+    ap-south-1     = "t3.small"
   }
 }
 
