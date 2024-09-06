@@ -225,4 +225,23 @@ module "module_name" {
 ### Filters
 
 - Used to filter out a specific or a group of recources to be used by data resources.
-- 
+ 
+
+## Debugging Terraform
+
+- Has detailed logs that can be enabled by setting the **TF_LOG** env variable to any value.
+- you can set the variable to one of the below log levels (in order of decreasing verbosity).
+- Linux: `export TF_LOG=INFO`
+- Windows: `set TF_LOG=INFO` - This will only be set to the session (temparory).
+
+|**Log Level**|
+|-----------|
+|TRACE|
+|DEBUG|
+|INFO|
+|WARN|
+|ERROR|
+
+- Can set the log file path by configuring **TF_LOG_PATH**.
+- By default log will be printed in std out.
+- After setting the verbose logging will be re-directed to the file in the log path.
