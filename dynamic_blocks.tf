@@ -47,6 +47,8 @@ resource "aws_security_group" "terraform-sg" {
     description = "allow_any"
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
+    from_port   = "-1"
+    to_port     = "-1"
   }
 
 }
