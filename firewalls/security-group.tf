@@ -68,4 +68,6 @@ resource "aws_vpc_security_group_egress_rule" "allow_any" {
   security_group_id = aws_security_group.terraform-sg.id
   ip_protocol       = "-1" # semantically equivalent to all traffic
   cidr_ipv4         = "0.0.0.0/0"
+  from_port         = "-1"
+  to_port           = "-1"
 }
