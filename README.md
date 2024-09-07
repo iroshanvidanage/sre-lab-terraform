@@ -245,3 +245,14 @@ module "module_name" {
 - Can set the log file path by configuring **TF_LOG_PATH**.
 - By default log will be printed in std out.
 - After setting the verbose logging will be re-directed to the file in the log path.
+
+
+## Terraform Troubleshooting
+
+- Four potential types of error could be occured.
+    - language: HCL - Hashicorp Configuration Language
+    - State: state locks happen when state is out of sync: for this you can `terraform force-unlock LOCK_ID`
+    - Core: Terraform bugs
+    - Provider: The provider related issues
+
+
