@@ -256,3 +256,16 @@ module "module_name" {
     - Provider: The provider related issues
 
 
+## Dynamic Blocks
+
+- Dynamic blocks allows us to dynamically construct repeatable nested blocks which is supported inside the following blocks;
+    - resource
+    - data
+    - provider
+    - provisioner
+
+```terraform
+dynamic "example" {
+    
+}
+```
