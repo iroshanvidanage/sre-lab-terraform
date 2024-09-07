@@ -271,3 +271,13 @@ dynamic "example" {
 ```
 
 
+## Terraform Validate
+
+- Used to validate the configuration files
+
+
+## Terraform Format
+
+- Used to format the configuration files in to a more ordered and justified manner.
+
+
