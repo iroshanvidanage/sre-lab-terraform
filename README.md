@@ -286,6 +286,7 @@ dynamic "example" {
 - Cloud resource can be managed by the terraform or using other resources (cdk / manual), if a tf managed resource has been altered manually, then we can use tainting to replace or delete / recreate the resource.
 - `terraform apply -replace="aws_instance.secondary-instance"`
 - Terraform will destroy and create a new instance.
+- Previously in older versions there was a command `terraform taint` now this command is not recomended to use.
 
 
 ## Terraform Target
