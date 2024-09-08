@@ -294,3 +294,13 @@ dynamic "example" {
 - To plan / apply only a specific resource can use `-target`.
 - `terraform plan -target="aws_security_group.rules_within_vpc" -var-file=dev.tfvars`
 
+
+## Splat Expressions
+
+- Allows to get a list of all the attributes.
+- Can be used to get a list of all the elements created from a resource; if the count is declared.
+- Attributes:
+    - arn
+    - name
+    - unique_id
+- Using \[\*\] with the resource name will list all the elements.

@@ -50,3 +50,8 @@ output "ds_file" {
 output "ds_aws_ami" {
   value = data.aws_ami.amazon_linux_latest.id
 }
+
+output "dev-user-name" {
+  # using splat expression to get all the arn
+  value = aws_iam_user.dev-user-name[*].arn
+}
