@@ -334,3 +334,13 @@ digraph G {
 }
 ```
 
+
+## Save the plan to a file
+
+- Allows saving a plan to a file.
+- `terraform plan -out infra.plan -var-file=dev.tfvars`
+- If we change the configurations later and we only need to run the previous configurations, this plan out gives us the opportunity to save this plan.
+- Many organizations require proof of planned changes for change management proccesses; this -out is the best way to provide what they reqire.
+- `terraform apply infra.plan`
+- `terraform show infra.plan` will show us the content.
+    - `terraform show -json infra.plan` will give the json output.
