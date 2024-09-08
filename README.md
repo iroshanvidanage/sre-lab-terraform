@@ -119,6 +119,13 @@ module "module_name" {
 }
 ```
 
+
+## Terraform output
+
+- Can use this command to fetch values for output blocks.
+- `terraform output <output_name>`
+
+
 ## Variables
 
 - Static values can be stored as variable where repeatedly apply in the code.
@@ -344,3 +351,6 @@ digraph G {
 - `terraform apply infra.plan`
 - `terraform show infra.plan` will show us the content.
     - `terraform show -json infra.plan` will give the json output.
+
+
+## 
