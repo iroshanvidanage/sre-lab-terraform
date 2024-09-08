@@ -311,7 +311,8 @@ dynamic "example" {
 ## Terraform Target
 
 - To plan / apply only a specific resource can use `-target`.
-- `terraform plan -target="aws_security_group.rules_within_vpc" -var-file=dev.tfvars`
+    - `terraform plan -target="aws_security_group.rules_within_vpc" -var-file=dev.tfvars`
+    - `terraform plan -target aws_iam_user.dev-user-name -var-file=dev.tfvars`
 
 
 ## Splat Expressions

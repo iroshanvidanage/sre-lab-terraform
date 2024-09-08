@@ -28,7 +28,7 @@ terraform {
     }
 */
   }
-  
+
   # used to restrict the required version of terraform
   # required_version = "1.9"
 
