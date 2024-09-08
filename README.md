@@ -62,6 +62,18 @@ provider "aws" {
 - Else can execute `terraform init -upgrade` which will update the _.terraform.lock.hcl_ file with new configuration.
 
 
+## Terraform Settings
+
+```terraform
+terraform {}
+```
+- Can be used to define the following
+    - Required Terraform Version
+    - Required Provider and Version
+    - BackEnd Configuration
+    - Experimental Features
+
+
 ## Terraform commands
 
 - `terraform init` initializes the terraform repo and installs the providers.
@@ -353,4 +365,3 @@ digraph G {
     - `terraform show -json infra.plan` will give the json output.
 
 
-## 
