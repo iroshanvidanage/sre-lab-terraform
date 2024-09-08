@@ -304,3 +304,33 @@ dynamic "example" {
     - name
     - unique_id
 - Using \[\*\] with the resource name will list all the elements.
+
+
+## Terraform Graph
+
+- Can create a dependency graph using `terraform graph`.
+- For this you don''t need to specify an env file, this will only run the dependency check and create a DaC (Diagram as Code).
+- https://dreampuf.github.io/GraphvizOnline/
+- This is using [Graphviz](https://graphviz.org/) dot language to generate a machine readble graph code.
+- If Graphviz dot engine is installed, can use `terraform graph -type=plan | dot -Tpng > graph.png`
+- `terraform graph -type=plan | dot -Tsvg > graph.svg`
+
+```dot
+digraph G {
+  rankdir = "RL";
+  node [shape = rect, fontname = "sans-serif"];
+  "data.aws_ami.amazon_linux_latest" [label="data.aws_ami.amazon_linux_latest"];
+  "data.aws_iam_user.user-iroshan" [label="data.aws_iam_user.user-iroshan"];
+  "data.aws_vpc.default" [label="data.aws_vpc.default"];
+  "data.local_file.test" [label="data.local_file.test"];
+  "aws_iam_user.dev-user-id" [label="aws_iam_user.dev-user-id"];
+  "aws_iam_user.dev-user-name" [label="aws_iam_user.dev-user-name"];
+  "aws_iam_user.payments-user" [label="aws_iam_user.payments-user"];
+  "aws_iam_user_policy.dev-user" [label="aws_iam_user_policy.dev-user"];
+  "aws_iam_user_policy.dev-user-2" [label="aws_iam_user_policy.dev-user-2"];
+  "aws_security_group.rules_within_vpc" [label="aws_security_group.rules_within_vpc"];
+  "aws_security_group.terraform-sg" [label="aws_security_group.terraform-sg"];
+  "local_file.file_text" [label="local_file.file_text"];
+}
+```
+
