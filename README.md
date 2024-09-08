@@ -366,3 +366,32 @@ digraph G {
     - `terraform show -json infra.plan` will give the json output.
 
 
+## Managing large infrastructure
+
+### Service Quotas
+
+- Some services have service quotas: some are adjustable and others fixed.
+
+### API Throttling
+
+- Need to keep API throttling in mind, when the allotted rate limit for an API call is exceeded, will receive an error.
+- If the rate limit is 1000, and a two calls one is 1000 and other 10, the 10 call will be throttled.
+- If the project has a large amount of resources; we need to be mindful about the way we are running plan / apply, cause it will send multiple API calls, even to refresh the state.
+- CIS benchmark document contains all the details regarding rules to follow.
+- This could affect production environment.
+
+### Key considerations
+
+- Convert a Big project into Multiple Smaller Projects.
+
+|Project|Resources|
+|-----|-----|
+|Project-1|vpc|
+|Project-2|iam_resources|
+|Project-3|ec2_instances|
+
+- Use resource targetting. `terraform plan -target="<target_resource>" -var-file=<variable_file>`
+
+- Setting refresh=false; this will stop the state refreshing which will stop sending lots of api calls for checking the current state of the infrastructure. This should only be done if you are sure about the current state.
+    - `terraform plan -refresh=false -var-file=dev.tfvars`
+
