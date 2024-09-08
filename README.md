@@ -287,3 +287,9 @@ dynamic "example" {
 - `terraform apply -replace="aws_instance.secondary-instance"`
 - Terraform will destroy and create a new instance.
 
+
+## Terraform Target
+
+- To plan / apply only a specific resource can use `-target`.
+- `terraform plan -target="aws_security_group.rules_within_vpc" -var-file=dev.tfvars`
+
