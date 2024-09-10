@@ -395,3 +395,14 @@ digraph G {
 - Setting refresh=false; this will stop the state refreshing which will stop sending lots of api calls for checking the current state of the infrastructure. This should only be done if you are sure about the current state.
     - `terraform plan -refresh=false -var-file=dev.tfvars`
 
+
+## Zipmap function
+
+- Construct a map from a list of keys and the corresponding list of values.
+- `zipmap(["a","b"], [1,2])`
+    - {
+        "a" = 1,
+        "b" = 2
+    }
+
+

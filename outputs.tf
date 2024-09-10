@@ -51,7 +51,16 @@ output "ds_aws_ami" {
   value = data.aws_ami.amazon_linux_latest.id
 }
 
-output "dev-user-name" {
+output "dev-user-name-arn" {
   # using splat expression to get all the arn
   value = aws_iam_user.dev-user-name[*].arn
+}
+
+# for zipmap example
+output "dev-user-name-name" {
+  value = aws_iam_user.dev-user-name[*].name
+}
+
+output "name_arn_combined" {
+  value = zipmap(aws_iam_user.dev-user-name[*].name, aws_iam_user.dev-user-name[*].arn)
 }
