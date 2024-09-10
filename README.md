@@ -406,3 +406,14 @@ digraph G {
     }
 
 
+## Comments
+
+- HCL supports three different syntaxes.
+
+| Type | Description |
+|------|-----|
+| # | single-line comment, ending at the line end |
+| // | single-line comment, alternative to # |
+| /* and */ | multi-line comments delimiters for start and end |
+
+
