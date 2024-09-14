@@ -417,3 +417,44 @@ digraph G {
 | /* and */ | multi-line comments delimiters for start and end |
 
 
+## Resource behaviour & Meta arguments
+
+- Terraform will create a resource that exist in the configuration but not in the state file.
+- Terraform will destroy resources that exist in the state but no longer exist in the configuration file.
+- Update in-place resources whose arguments have changed.
+- Destroy and re-create resources whose arguments have changed but which cannot be updated in-place due to remote API limitation.
+    - AMI id changes
+    - EC2 instance type changes
+
+- So the default behaviour is to always check and compare the desired state and the current state. But if we have changed the current state by altering manually, need to tell terraform to ignore those manual changes and let them be there.
+
+
+### Using Meta Arguments
+
+- Terraform allows us to include meta-argument within the resource block which allows some details of this standard resource behavior to be customized on a per-resource basis.
+
+| Meta-Argument | Description |
+|-----------|---------|
+| depends_on | Handle hidden resource or module dependecies that Terraform cannot automatically infer. |
+| count | Accepts a whole number, and creates that many instances of the resource |
+| for_each | Accepts a map or set of strings, and creates an instance for each item in that map or set. |
+| lifecycle | Allows modification of the resouce lifecycle. |
+| provider | Specifies which provider configuration to use for a resource, overriding Terraform's default behavior of selecting one based on the resource type name |
+
+
+- There are 4 arguments available within lifecycle block.
+
+| Arguments | Description |
+|-----------|----------|
+| create_before_destroy | New replacement object is created first, and the prior object is destroyed after the replacement is created. |
+| prevent_destroy | Terraform to reject with an error any plan that would destroy the infra onject associated with the resource. |
+| ignore_changes | Ignore certain changes to the live resource that does not match the configuration. |
+| replace_triggered_by | Replaces the resource when any of the referenced items change. |
+
+- There are few limitations when using `create_before_destroy` cannot use if a ip is set in the configuration.
+- `prevent_destroy` can be used as a safety measure against the accidental replacement of objects that may be costly to reproduce, such as database instances; but if the resource block was removed from the configuration, then it will be destroyed.
+- `ignore_changes` can be used to ignore the modifications done on a resource outside of the terraform, best option to keep the changes done by a customer on a resource created by an automated process.
+    - Can add multiple attributes.
+    - `all` every change done after creation of the resource will be ignored.
+- Terraform will destroy if destroy is executed but will not update it.
+

@@ -6,8 +6,8 @@ module "variables" {
   source = "../"
 }
 resource "aws_instance" "iroshanv-devops-srelab-ec2" {
-  ami           = module.variables.ami                 #ami used to create the ec2
-  instance_type = module.variables.instance_properties #ec2_instance_type
+  ami           = module.variables.ami                    #ami used to create the ec2
+  instance_type = module.variables.instance_properties[1] #ec2_instance_type
 
   tags = {
     Name        = "srelab-ec2"
