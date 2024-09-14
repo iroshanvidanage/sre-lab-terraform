@@ -198,6 +198,11 @@ module "module_name" {
 
 - Map type has key value pairs and has curly brackets.
 
+- Set type has curly brackets.
+- Used to store multiple items, similar to list. Items are unordered and duplicates are not allowed.
+- `toset()` will convert a list into a set, removing duplicates if present.
+> In `for_each` sets will be used for distinct values.
+
 
 ### Fetching / Referencing data from Maps and Lists
 
