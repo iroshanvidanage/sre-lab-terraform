@@ -202,20 +202,6 @@ module "module_name" {
 ### Fetching / Referencing data from Maps and Lists
 
 
-## COUNT Meta-Argument
-
-- Used to create the identical resources repeatedly (multiple), example 30 ec2 instances.
-- Not restricted to ec2, but other resources as well.
-- Depending on the amount of resources being created, it might be hard to handle the instances. Hence will need some level of customizations.
-- Some resources have uniqueness in their resources and, need to have a unique identifier/name.
-
-
-### COUNT.INDEX
-
-- `count.index` holds a distinct index number, starting from 0.
-- Each resource will have a unique index.
-
-
 ## Conditional Expressions
 
 - _condition ? true\_value : false\_value_ - similar to if conditions
@@ -458,3 +444,25 @@ digraph G {
     - `all` every change done after creation of the resource will be ignored.
 - Terraform will destroy if destroy is executed but will not update it.
 
+
+## COUNT Meta-Argument
+
+- Used to create the identical resources repeatedly (multiple), example 30 ec2 instances.
+- Not restricted to ec2, but other resources as well.
+- Depending on the amount of resources being created, it might be hard to handle the instances. Hence will need some level of customizations.
+- Some resources have uniqueness in their resources and, need to have a unique identifier/name.
+
+
+### COUNT.INDEX
+
+- `count.index` holds a distinct index number, starting from 0.
+- Each resource will have a unique index.
+
+
+### Challenges
+
+- for list `default = ["user-1", "user-2", "user-3"]`
+- count `count = 3` & `count.index`
+- At this if we changed the order of the list, the resource mappings will be changed, cause the positions will be changed.
+- If resources are almost identical, `count` is appropriate.
+- If distinctive values are needed in the arguments, usage of `for_each` is recomended.
