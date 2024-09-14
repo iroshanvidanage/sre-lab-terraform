@@ -471,3 +471,20 @@ digraph G {
 - At this if we changed the order of the list, the resource mappings will be changed, cause the positions will be changed.
 - If resources are almost identical, `count` is appropriate.
 - If distinctive values are needed in the arguments, usage of `for_each` is recomended.
+
+
+## for_each Meta-Argument
+
+- Makes use of map/set as an index value of the created resource.
+- Since it will be using the key instead of an index for resource referencing, if a new element is added, it will not affect the other resources.
+- Has two attributes each.key & each.value.
+
+```terraform
+for_each = {
+    key1 = "t2.micro"
+    key2 = "t3.micro"
+}
+
+key_name = each.key
+instance_type = each.value
+```

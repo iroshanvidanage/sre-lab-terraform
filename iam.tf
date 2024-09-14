@@ -52,3 +52,11 @@ resource "aws_iam_user_policy" "dev-user-2" {
   user   = "dev-user-${element(var.dev-users, count.index)}"
   policy = file("./files/ec2-policy.json")
 }
+
+
+resource "aws_iam_user_policy" "dev-user_set" {
+  name     = "dev-user-policy-set"
+  for_each = toset(var.dev-users) # using the list
+  user     = "dev-user-${each.key}"
+  policy   = file("./files/ec2-policy.json")
+}
