@@ -488,3 +488,51 @@ for_each = {
 key_name = each.key
 instance_type = each.value
 ```
+
+
+## Provisioners
+
+- Used to **execute scripts** on a local or remote machine after resource creation or destruction.
+- Ex: Install software packages after launching an instance.
+- There are 2 major types of provisioners.
+    - local-exec
+    - remote-exec
+    > - file provisioner: not included in the exam.
+
+- Provisioners need to be defined inside the resource block.
+- For multiple commands need to configure multiple provisioners.
+
+### local-exec provisioner
+
+- Invokes a local executable after a resource is created.
+- Ex: EC2 is launched and fetch the IP and store it in a file *server_ip.txt* in the local server where the Terraform is istalled.
+
+
+### remote-exec provisioner
+
+- Invoke scripts or run commands directly on the remote server.
+- Ex: Install nginx, apache after EC2 is launched.
+- For this we need to have the key file to access the server. (Store the key in a secure manner. They key is ignored.)
+- The key file content should be loaded into the terraform and can be done using `file(./key/path)` function.
+- Need to configure & specify the connection details.
+- The security group being attached need to have the ssh rule allowed.
+
+
+### Creation-time provisioners
+
+- Only run during creation, not during updating or any other lifecycle.
+- If a creation-time provisioner fails, the resource is marked as tainted (to be replaced).
+- A tainted resource will be planned for destruction and re-creation upon the next terraform apply.
+- Terraform does this because a failed provisioner can leave a resource in a semi-configured state.
+> If a provisioner failed, `on_failure` condition can be used to change the default behaviour which is to fail the terraform apply it self.
+
+| Allowed Values | Description |
+|------|---------|
+| continue | Igonore the error and continue with creation or destruction. |
+| fail | Raise an error and stop applying (the default behaviour). If this is a creation provisioner, taint the resource. |
+
+
+### Destroy-time provisioners
+
+- Only run before the resources are destroyed.
+- Commonly used when remove and De-link Anti-Virus software before EC2 gets terminated.
