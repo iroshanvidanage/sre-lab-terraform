@@ -536,3 +536,24 @@ instance_type = each.value
 
 - Only run before the resources are destroyed.
 - Commonly used when remove and De-link Anti-Virus software before EC2 gets terminated.
+
+
+## Terraform Modules
+
+- One of the basic principle of SE is DRY. Stop repititive patterns.
+- With a larger organization, there can be lots of instances where can be the same code will be used 100+ times. In a situation such as this, there can be issues if we try to attach a new feature or try to change anything.
+- For ease of use and maintenance we can try to modularize repetitive code patterns.
+- Better approach is to use centralized standardized terraform templates/modules.
+
+```terraform
+module "ec2_instance" {
+  # using the module to import the variable outputs
+  source = "path/to/outputs"
+}
+```
+
+- Advantage is that, no need to write code starting from scratch. Already available modules can be imported to make things easier.
+    - ec2_module
+    - vpc_module
+    - iam_module
+
