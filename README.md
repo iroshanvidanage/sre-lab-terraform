@@ -557,3 +557,8 @@ module "ec2_instance" {
     - vpc_module
     - iam_module
 
+- Modules can be found in the following location (provider is selected as AWS)
+    - https://registry.terraform.io/browse/modules?provider=aws
+
+- Just by referencing any module, it is not always the case that the infrastructure resource will be created for you directly.
+- Some modules require specific inputs and values from the user side to be filled in before a resource gets created.
