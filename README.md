@@ -586,3 +586,22 @@ module "eks" {
 - Always read the Module Documentation to understand the overall structure, important information, and the expected input when creating a resource.
 
 
+### Correct Module
+
+- The registry can contain multiple modules for a specific infrastructure.
+    1. Check total downloads
+    2. Check GitHub page of module
+    3. Avoid modules written by individual participant
+    4. Analyze module documentation
+    5. Check version history of module
+    6. Analyze the code
+    7. Community feedback
+    8. Maintained by HashiCorp partner
+
+> [!CAUTION]
+> An attacker can include malicious code in a module that sends information about environment to the attacker.
+
+> [!IMPORTANT]
+> Organizations maintain their own set of modules.
+> Might have initially fork a module from the Terraform registry and modify it.
+
