@@ -553,6 +553,7 @@ module "ec2_instance" {
 ```
 
 - Advantage is that, no need to write code starting from scratch. Already available modules can be imported to make things easier.
+- [AWS modules](https://github.com/terraform-aws-modules/)
     - ec2_module
     - vpc_module
     - iam_module
@@ -562,3 +563,26 @@ module "ec2_instance" {
 
 - Just by referencing any module, it is not always the case that the infrastructure resource will be created for you directly.
 - Some modules require specific inputs and values from the user side to be filled in before a resource gets created.
+    - [eks module](https://registry.terraform.io/modules/terraform-aws-modules/eks/aws/latest)
+    - Here needs to give the subnet id of the AWS account.
+
+```terraform
+module "eks" {
+  source        = "terraform-aws-modules/eks/aws"
+  version       = "20.24.2"
+  subnet_ids    = [sub_net_id_list]
+  cluster_name  = "a_name_for_the_cluster"
+}
+```
+
+
+### Module Structure
+
+- Some module pages in GitHub can contain multiple sets of modules together for different features.
+- In such cases, you have to reference the exact sub-module required.
+    - "terraform-aws-iam/modules/iam-account"
+    - "terraform-aws-iam/modules/iam-assumable-role-with-oidc"
+    - "terraform-aws-iam/modules/iam-assumable-role-with-saml"
+- Always read the Module Documentation to understand the overall structure, important information, and the expected input when creating a resource.
+
+
