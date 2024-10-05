@@ -629,3 +629,15 @@ module "eks" {
 
 - For more sourcing methods refer the [documentation](https://developer.hashicorp.com/terraform/language/modules/sources). 
 
+
+### Improving a module
+
+- Need to get rid of the hardcoded modules. 
+- If there are hardcoded values we cannot edit them after importing a module.
+- Try to add a required_provider block if there are version specific configurations in the code.
+
+
+### Variables in modules
+
+- In order to avoid the hardcoded values, use of variables is a good approach.
+
