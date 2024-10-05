@@ -613,7 +613,7 @@ module "eks" {
 - It is a bundle, can be one or multiple tf files where the necessary inputs are exposed with outputs.tf file.
 
 
-### Module sorces
+### Module sources
 
 - GitHub urls
     - Referenced with `"github.com/path/to/module"` for https urls.
