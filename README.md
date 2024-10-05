@@ -605,3 +605,27 @@ module "eks" {
 > Organizations maintain their own set of modules.
 > Might have initially fork a module from the Terraform registry and modify it.
 
+
+## Creating a custom module
+
+### Base structure
+
+- It is a bundle, can be one or multiple tf files where the necessary inputs are exposed with outputs.tf file.
+
+
+### Module sorces
+
+- GitHub urls
+    - Referenced with `"github.com/path/to/module"` for https urls.
+    - `"git@github.com:path/to/module"` for ssh.
+- Generic git urls
+    - `"git::https://"` & `"git::ssh://"`
+- HTTP Urls
+    - `<meta name="terraform-get" content="github.com/path" />`
+- S3 Buckets
+- Terraform registry
+- Local paths
+    - A local path must begin with either ./ or ../ to indicate that it's a local path
+
+- For more sourcing methods refer the [documentation](https://developer.hashicorp.com/terraform/language/modules/sources). 
+
