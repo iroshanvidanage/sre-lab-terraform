@@ -608,9 +608,19 @@ module "eks" {
 
 ## Creating a custom module
 
-### Base structure
+### Standard module structure
 
 - It is a bundle, can be one or multiple tf files where the necessary inputs are exposed with outputs.tf file.
+- There's a minimal file standard structure to be maintained.
+
+> - minimal-module/
+>   -   ├── README.md
+>   -   ├── main.tf
+>   -   ├── variables.tf
+>   -   └── outputs.tf
+
+- There can be additional files.
+- Depending on the consumer's requrements, the production team will break up the applicatio infrastructure into smaller modules representing the services.
 
 
 ### Module sources
