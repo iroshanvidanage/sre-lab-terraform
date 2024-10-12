@@ -635,7 +635,7 @@ module "eks" {
 >       -   ├── .../
 >   -   ├── examples/
 >      -    ├── exampleA/
->          -    ├── main.tf
+>           -    ├── main.tf
 >      -    ├── exampleB/
 >      -    ├── .../
 
