@@ -641,3 +641,17 @@ module "eks" {
 
 - In order to avoid the hardcoded values, use of variables is a good approach.
 
+
+### Root & Child Module
+
+- Root module resides in the main working directory of your Terraform config. This is the entry point for your infra definition.
+- A module that has been called by another module is often referred to as a child module.
+
+```terraform
+module "ec2_instance" {
+  # root module to import the child module
+  source = "path/to/other/modules"
+  # the module which is being called is the child module
+}
+```
+
