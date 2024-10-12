@@ -685,6 +685,7 @@ module "ec2_instance" {
 }
 ```
 
+
 ## Publishing modules
 
 - There are certain requirements.
@@ -695,3 +696,27 @@ module "ec2_instance" {
     - Module structure : Must adhere to the standard module structure.
     - Version tags : Must be semantic versioning (x.y.z) and can be optionally prefix with v.
 
+
+## Terraform Workspace
+
+- Terraform workspace enable us to manage multiple set of deployments from the same sets of configuration file.
+- Unique tfstate file created for each environment workspace for the same set of configs.
+    - dev.tfstate ----> Development ENV
+    - prod.tfstate ----> Production ENV
+
+- `terraform workspace list` shows the list of workspaces available.
+- `terraform workspace select <workspace_name>` swith to the dev env workspace.
+
+- Depending on the workspace we can define the variables to be associated with deferent values.
+
+| Environement | instance_type |
+| ----- | ----- |
+| Dev | t2.micro |
+| Prod | m5.large |
+
+```terraform
+resource "aws" {
+    ami             = "ami-4d8afes5g3sg354s"
+    instance_type   = local.instance_type[terraform.workspace]
+}
+```
