@@ -619,6 +619,26 @@ module "eks" {
 >   -   ├── variables.tf
 >   -   └── outputs.tf
 
+> - complete-module/
+>   -   ├── README.md
+>   -   ├── main.tf
+>   -   ├── variables.tf
+>   -   ├── outputs.tf
+>   -   ├── ...
+>   -   ├── modules/
+>       -   ├── nestedA/
+>           -   ├── README.tf
+>           -   ├── main.tf
+>           -   ├── variable.tf
+>           -   └── outputs.tf
+>       -   ├── nestedB/
+>       -   ├── .../
+>   -   ├── examples/
+>      -    ├── exampleA/
+>          -    ├── main.tf
+>      -    ├── exampleB/
+>      -    ├── .../
+
 - There can be additional files.
 - Depending on the consumer's requrements, the production team will break up the applicatio infrastructure into smaller modules representing the services.
 
@@ -664,4 +684,14 @@ module "ec2_instance" {
   # the module which is being called is the child module
 }
 ```
+
+## Publishing modules
+
+- There are certain requirements.
+    - GitHub : The module must be on GitHub and should be a public repo.
+    - Named : Repo must follow the three-part convention
+        - `terraform-<provider>-<name>`
+    - Description : Used to populate the short description of the repo.
+    - Module structure : Must adhere to the standard module structure.
+    - Version tags : Must be semantic versioning (x.y.z) and can be optionally prefix with v.
 
