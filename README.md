@@ -729,3 +729,53 @@ resource "aws" {
 - The terraform.tfstate files can include passwords in clear texts.
 - terraform.tfvars which could contain passwords (optional) & crash.log file if terraform crashes, could be commited to the remote repo, it's better to omit them in gitignore as well.
 
+
+## Terraform Backend
+
+- Backend determines where the terraform stores it's state file.
+- By default it uses a backend called local to store the state on the disk.
+- Storing state file in a remote repo is not ideal if the source files are used by a collabarative team.
+- Recomennded architecture is to store the source files as follows,
+    - Code is stored in Git Repo.
+    - State file is stored in a central backend.
+        - S3
+        - Consul
+        - Azurerm
+        - Kubernetes
+        - HTTP
+        - ETCD
+
+
+### Configuring backend in S3
+
+- The backend is configured using the `backend` keyword.
+- The bucket needs to be created beforehand to store the file.
+- We can use this configuration to customize the storing location depending on the project you are working and the statefile name as well.
+- This can be implemented to set the backend dynamically, if there's a terraform template is used.
+- In this we can use the `terraform init` command to set the backend configurations, [Partial Configuration](https://stackoverflow.com/questions/63048738/how-to-declare-variables-for-s3-backend-in-terraform).
+    - Import the backend from env variables.
+
+        ```shell
+        terraform init \
+        -backend-config="bucket=${TFSTATE_BUCKET}" \
+        -backend-config="key=${TFSTATE_KEY}" \
+        -backend-config="region=${TFSTATE_REGION}" 
+        ```
+
+    - Import the backend config from a file
+        - Create a .conf file
+        ```
+        bucket="terraform-state-bucket"
+        key="path/<state_file_name>.tfstate"
+        region="aws-region"
+        ```
+
+        ```shell
+        terraform init -backend-config=dev.conf
+        ```
+
+
+> [!IMPORTANT]
+> As per the backend design here, the `TFSTATE_KEY` should be defined explicitly otherwise it would give an error, cause the default value would overwrite an existing statefile. This is cosidered if you are using multiple statefiles to be stored in tha same bucket or under the same project instaces such as network, security, core, resources, etc..
+
+
