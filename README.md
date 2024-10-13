@@ -779,3 +779,17 @@ resource "aws" {
 > As per the backend design here, the `TFSTATE_KEY` should be defined explicitly otherwise it would give an error, cause the default value would overwrite an existing statefile. This is cosidered if you are using multiple statefiles to be stored in tha same bucket or under the same project instaces such as network, security, core, resources, etc..
 
 
+### Configuring to set the local path dynamically
+
+- This is help full if the state files are centralized according to resources, if the account management is hard to maintain in buckets.
+
+```terraform
+# local backend config (used to set backend dynamically)
+data "terraform_remote_state" "foo" {
+  backend = "local"
+
+  config = {
+    path = "${path.module}/../../${terraform_file_name}.tfstate"
+  }
+}
+```
