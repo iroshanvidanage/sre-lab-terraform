@@ -793,3 +793,18 @@ data "terraform_remote_state" "foo" {
   }
 }
 ```
+
+
+## State Locking
+
+- This is done as a fail safe to stop from running multiple `terraform plan/apply` commands simultaneously.
+- If not, the state file will be corrupted. 
+- If an error is thrown then someone else is performing `terraform plan/apply` operation.
+- State locking happens automatically and able to see `terraform.tfstate.lock.info` file is created. This file contains all the details of the currently running operation. This file will be removed once the operation is completed.
+- If state locking is failed, terraform will not continue.
+- Not all backends support locking (makesure the backend supports state locking if it's a collaborative project).
+- Terraform has a `force-unlock` feature to unlock the state, if the state lock has not been removed automatically.
+
+> [!CAUTION]
+>  This should be used to remove your own terraform locking. Not for someone else's locking operation.
+
