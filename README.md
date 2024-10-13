@@ -720,3 +720,12 @@ resource "aws" {
     instance_type   = local.instance_type[terraform.workspace]
 }
 ```
+
+
+## Remote TFState management
+
+- When commiting the work repo to better to avoid, secrets, credentials and key files if used in the repo it self.
+- Use a vault or secrets manager for passwords and secrets to be stored.
+- The terraform.tfstate files can include passwords in clear texts.
+- terraform.tfvars which could contain passwords (optional) & crash.log file if terraform crashes, could be commited to the remote repo, it's better to omit them in gitignore as well.
+
