@@ -808,3 +808,12 @@ data "terraform_remote_state" "foo" {
 > [!CAUTION]
 >  This should be used to remove your own terraform locking. Not for someone else's locking operation.
 
+
+### State locking with DynamoDB
+
+- By default S3 does not suppport State locking functionality.
+- You need to make use of DynamoDB table to achive state locking functionality.
+- When creating the DDB table the partition key must be `LockID` with _String_.
+- When the changes are done and initialize again in a previously initiated project,
+    - `terraform init -migrate-state` to change the state locking.
+    - `terraform init -reconfigure` to keep it as it is with no changes.

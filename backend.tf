@@ -1,11 +1,12 @@
-# # Terraform s3 backend config
-# terraform {
-#   backend "s3" {
-#     bucket = "mybucket"
-#     key    = "path/to/my/key"
-#     region = "us-east-1"
-#   }
-# }
+# Terraform s3 backend config
+terraform {
+  backend "s3" {
+    bucket         = "terraform-state-file"
+    key            = "terraform-state-folder/terraform.tfstate"
+    region         = "us-east-1"
+    dynamodb_table = "terraform-state-lock"
+  }
+}
 
 
 # # local backend config (this cannot be set dynamically)
