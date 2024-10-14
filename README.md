@@ -815,6 +815,6 @@ data "terraform_remote_state" "foo" {
 - By default S3 does not suppport State locking functionality.
 - You need to make use of DynamoDB table to achive state locking functionality.
 - When creating the DDB table the partition key must be `LockID` with _String_.
-- When the changes are done and initialize again in a previously initiated project,
+- When the changes are done and initialize again in a previously initialized project,
     - `terraform init -migrate-state` to change the state locking.
     - `terraform init -reconfigure` to keep it as it is with no changes.
