@@ -1,6 +1,7 @@
 # sre-lab-terraform
 
 - This is following the course terraform-beginner-to-advanced conducted by Zeal Vora from Udemy.
+- Do not initialize the project with the backend.tf comment the config for local backend.
 
 
 ## Code Repo
