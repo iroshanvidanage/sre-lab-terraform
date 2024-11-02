@@ -1,3 +1,4 @@
+# using as a module to get the eip details
 module "eip" {
   source = "../creating_ec2"
 }
@@ -51,6 +52,8 @@ resource "aws_vpc_security_group_ingress_rule" "allow-eip" {
   for this need string interpolation
   */
   cidr_ipv4 = "${module.eip.eip-address}/32" # string interpolation
+  /* the eip of the created resource has been used here
+  */
   from_port = 7000                           # starting port
   to_port   = 7010                           # ending port
 }
@@ -71,3 +74,4 @@ resource "aws_vpc_security_group_egress_rule" "allow_any" {
   from_port         = "-1"
   to_port           = "-1"
 }
+

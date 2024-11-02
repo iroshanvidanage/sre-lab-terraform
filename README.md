@@ -836,3 +836,55 @@ data "terraform_remote_state" "foo" {
     - `terraform init -reconfigure` to keep it as it is with no changes.
 
 
+## Remote state data source
+
+- In large organizations multiple teams work on different aspects of the infrastructure resources.
+    - Networking team: Public IPs, vpc creation, peering
+    - Security team: Firewall rules, shield, certificate management
+    - Application team: Instance creation, lambda functions, parameter store, secret manager, ECS/EKS
+
+- In a situation like this, the security team needs to know the IPs the networking team is creating, so that they can whitelist them.
+- In order to achieve this, following steps must be fulfilled.
+    - The code from the Sec project should have access to tfstate file of Networking project.
+        - The Networking project s3 bucket should be accessible by the Sec project code.
+    - The code should fetch all the address mentioned in the output values in the state file.
+    - The code should whitelist the IP addresses in Firewall rules.
+- There can be multiple dependencies which can be managed by n number of teams.
+
+> - networking-project/
+>   -   ├── backend.tf
+>   -   ├── eip.tf
+>   -   ├── variables.tf
+>   -   └── outputs.tf
+
+> - security-project/
+>   -   ├── backend.tf
+>   -   ├── firewall.tf
+>   -   ├── variables.tf
+>   -   └── outputs.tf
+
+- The `terraform_remote_state` data source allows to fetch output values from a specific state backend.
+
+```terraform
+data "terraform_remote_state" "eip" {
+    backend = "s3"
+    config = {
+        bucket  = "terraform-state-files"
+        key     = "networking-state-folder/eip.tfstate"
+        region  = "us-east-1"
+    }
+}
+```
+
+- In the code the resource should be defined to fetch the data.
+```terraform
+resource "aws_vpc_security_group_ingress_rule" "allow-eip" {
+  security_group_id = aws_security_group.terraform-sg.id
+  ip_protocol       = "tcp"
+  cidr_ipv4         = "${data.terraform_remote_state.eip.outputs.eip_addr}/32" # string interpolation
+  /* the eip of the created resource has been used here
+  */
+  from_port = 7000                           # starting port
+  to_port   = 7010                           # ending port
+}
+```
