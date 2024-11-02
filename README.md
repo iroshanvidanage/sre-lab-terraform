@@ -731,6 +731,22 @@ resource "aws" {
 - terraform.tfvars which could contain passwords (optional) & crash.log file if terraform crashes, could be commited to the remote repo, it's better to omit them in gitignore as well.
 
 
+### Terraform state management
+
+- It is not recommended to modify the state file manually. But there are cases where you might have to modify the state file manually.
+- Terraform state file management commands; `terraform state`
+
+| Sub-commands | Description |
+| ----- | ----- |
+| `list` | List resources within terraform state file |
+| `mv` | Moves item with terraform state |
+| `pull` | Manually download and output the state from remote state |
+| `push` | Manually upload a local state file to remote state |
+| `rm` | Removes items from the Terraform state |
+| `show` | Show the attributes of a single resource in the state |
+| `replace-provider` | Used to replace the provider for resources in a Terraform state |
+
+
 ## Terraform Backend
 
 - Backend determines where the terraform stores it's state file.
@@ -818,3 +834,5 @@ data "terraform_remote_state" "foo" {
 - When the changes are done and initialize again in a previously initialized project,
     - `terraform init -migrate-state` to change the state locking.
     - `terraform init -reconfigure` to keep it as it is with no changes.
+
+
