@@ -915,3 +915,9 @@ terraform import <resource_type><local_name>
 terraform plan -generate-config-out=generated.tf
 ```
 
+
+## Multiple Provider Configuration
+
+- There can be instances where a single config file can contain resources which need to be deployed to different regions.
+- Can utilize the alias meta-argument in the provider block.
+- [multi-provider.tf](./multi-provider.tf)
