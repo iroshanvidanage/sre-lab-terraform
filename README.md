@@ -920,6 +920,7 @@ terraform plan -generate-config-out=generated.tf
 
 - There can be instances where a single config file can contain resources which need to be deployed to different regions.
 - Can utilize the alias meta-argument in the provider block.
+- Even in multiple provider you need to define unique local name for resource names.
 - [multi-provider.tf](./multi-provider.tf)
 
 
