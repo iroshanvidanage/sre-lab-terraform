@@ -909,4 +909,11 @@ terraform import <resource_type><local_name>
 &nbsp;
 - Second approach is to import resource using an [import block](https://developer.hashicorp.com/terraform/language/import).
 - This is important when there are a large number of unamanged resources available can be used to bring under terraform management.
+\
+&nbsp;
+- After creating the import block you can generate the [configuration](https://developer.hashicorp.com/terraform/language/import/generating-configuration) file.
+
+```shell
+terraform plan -generate-config-out=generated.tf
+```
 
