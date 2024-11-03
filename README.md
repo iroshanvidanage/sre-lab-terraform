@@ -921,3 +921,10 @@ terraform plan -generate-config-out=generated.tf
 - There can be instances where a single config file can contain resources which need to be deployed to different regions.
 - Can utilize the alias meta-argument in the provider block.
 - [multi-provider.tf](./multi-provider.tf)
+
+
+## Sensitive Parameters
+
+- Should design our terraform configs in such way that sensitive information is available and shown out of the box std_out, logs, etc..
+- For sensitive content in creating files can use the sensitive parameter with the content or the `local_sensitive_file` resource type.
+- [file.tf](./file.tf)

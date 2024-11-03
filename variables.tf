@@ -84,3 +84,8 @@ variable "tags" {
     Environment = "Development"
   }
 }
+
+variable "sensitive_content" {
+  sensitive = true
+  default   = "password"
+}
