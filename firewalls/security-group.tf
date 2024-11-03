@@ -54,8 +54,8 @@ resource "aws_vpc_security_group_ingress_rule" "allow-eip" {
   cidr_ipv4 = "${module.eip.eip-address}/32" # string interpolation
   /* the eip of the created resource has been used here
   */
-  from_port = 7000                           # starting port
-  to_port   = 7010                           # ending port
+  from_port = 7000 # starting port
+  to_port   = 7010 # ending port
 }
 
 resource "aws_vpc_security_group_ingress_rule" "allow-app-traffic" {
