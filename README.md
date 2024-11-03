@@ -888,3 +888,25 @@ resource "aws_vpc_security_group_ingress_rule" "allow-eip" {
   to_port   = 7010                           # ending port
 }
 ```
+
+
+## Terraform import
+
+- If there are resources created manually and now need to manage them under terraform, can use the `terraform import` to bring the previously manually created resources to terraform.
+- In earlier versions of terraform the user had to still create the tf files from scratch before importing the resources to _terraform.tfstate_ file.
+- In the newer approach, `terraform import` can automatically create the terraform configuration files for the resources you want to import.
+- This is much easier when there are large number of resources to be imported to terraform.
+\
+&nbsp;
+- First approach; the configuration files are present, but the resources are not in state file
+- Can find a guide from [here](https://spacelift.io/blog/importing-exisiting-infrastructure-into-terraform).
+- This is important when you are missing the state file.
+
+```shell
+terraform import <resource_type><local_name>
+```
+\
+&nbsp;
+- Second approach is to import resource using an [import block](https://developer.hashicorp.com/terraform/language/import).
+- This is important when there are a large number of unamanged resources available can be used to bring under terraform management.
+
