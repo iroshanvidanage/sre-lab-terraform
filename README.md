@@ -929,3 +929,11 @@ terraform plan -generate-config-out=generated.tf
 - Should design our terraform configs in such way that sensitive information is available and shown out of the box std_out, logs, etc..
 - For sensitive content in creating files can use the sensitive parameter with the content or the `local_sensitive_file` resource type.
 - [file.tf](./file.tf)
+- Sensitive content cannot be viewed through terraform output blocks; trying will immediately give an error.
+> Error: Output refers to senstive values
+- If the content to be censored; then use the `sensitive = "true"` attribute within the output block.
+- But the sensitive info will be included in the tfstate file.
+
+> [!IMPORTANT]
+> Mature providers like AWS has a way to identify that there are sensitive information in the resource blocks.
+> RDS or DB instance creation could include passwords and they will be redacted automatically, even if we didn't configure the sensitive parameter.
