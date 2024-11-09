@@ -937,3 +937,21 @@ terraform plan -generate-config-out=generated.tf
 > [!IMPORTANT]
 > Mature providers like AWS has a way to identify that there are sensitive information in the resource blocks.
 > RDS or DB instance creation could include passwords and they will be redacted automatically, even if we didn't configure the sensitive parameter.
+
+
+## Hashicorp vault
+
+- HashiCorp Vault allows organizations to securely store secrets like tokens, passwords, certificates along with access management for protecting secrets.
+- One of the common challenges nowadays in an organization is "Secrets Management". Ex: db passwords, access/secret keys, API tokens, encryption keys etc...
+- Vault can be used to rotate secrets which will prevent breaches and secret leaks.
+- Vault has dynamic secrets; where a unique secret is generated for the user and it'll be expired after a TTL.
+- Vault can be used to encrypt data.
+- Access management related work can be overtaken by Vault.
+
+
+## Terraform and Vault integration
+
+- Vault provider allows Terraform to read from, write to, and configure HashiCorp Vault.
+- [vault.tf](./vault.tf)
+- Any vault secrets obtained using Terraform will be present in the state file, make sure to securly store the state file.
+
