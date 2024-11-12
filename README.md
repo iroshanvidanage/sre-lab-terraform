@@ -955,3 +955,12 @@ terraform plan -generate-config-out=generated.tf
 - [vault.tf](./vault.tf)
 - Any vault secrets obtained using Terraform will be present in the state file, make sure to securly store the state file.
 
+
+## Dependency Lock file
+
+- Provider plugins and Terraform are managed independently and have different release cycle.
+- Version constraints within the configuration itself determine which versions of dependecies are potentially compatible.
+- When installing a provider for the first time, terraform will pre-populate the hashes value with checksums that are covered by the provider developer's cryptographic signature, which usually covers all of the available packages for that provider version across all supported platforms.
+
+> [!IMPORTANT]
+> Terraform does not remember version selections for remote modules, and so Terraform will always select the newest available module version that meets the specified version constraints.
