@@ -969,6 +969,7 @@ terraform plan -generate-config-out=generated.tf
 ## HCP Terraform Cloud
 
 - Can create a free [account](https://app.terraform.io/session).
+- In the *Free Tier* can use upto 500 resources per month. [For more](https://www.hashicorp.com/products/terraform/pricing).
 - Basic structure of HCP Terraform.
     1. Organizations - Oraganizations are shared spaces for one or more teams to collaborate on workspaces.
         - HCP manages plans and billing at the organization level.
@@ -988,3 +989,4 @@ terraform plan -generate-config-out=generated.tf
         - A project can have multiple workspaces associated.
         - Can structure your projects based on the org resource usage, teams, business units, services etc.
         - In *Standard Edition* can grant teams access to groups/projects.
+    4. Registry - Can store modules in the private registry.
