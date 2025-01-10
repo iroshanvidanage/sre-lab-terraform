@@ -964,3 +964,27 @@ terraform plan -generate-config-out=generated.tf
 
 > [!IMPORTANT]
 > Terraform does not remember version selections for remote modules, and so Terraform will always select the newest available module version that meets the specified version constraints.
+
+
+## HCP Terraform Cloud
+
+- Can create a free [account](https://app.terraform.io/session).
+- Basic structure of HCP Terraform.
+    1. Organizations - Oraganizations are shared spaces for one or more teams to collaborate on workspaces.
+        - HCP manages plans and billing at the organization level.
+        - Each user can belong to multiple orgs, which might subscribe to different billing plans.
+    2. Workspace - Manages infrastructure with workspaces instead of directories.
+        - An org can have multiple workspaces.
+        - The workspace doesn't contain the tf configuration files, instead it links to the appropriated git repo and fetch the code to execute.
+
+    | Component | Local | HCP Terraform |
+    | ----- | ----- | ----- |
+    | tf configuration | On disk | In linked git repo |
+    | Variables | `.tfvars` files, CLI arguments, shell env variables | In workspace |
+    | State | On disk, remote backend | In workspace |
+    | Secrets, creds | shell env variables, entered at prompts | In workspace, as sensitive variables |
+
+    3. Projects - Helps to organize your workspaces into groups.
+        - A project can have multiple workspaces associated.
+        - Can structure your projects based on the org resource usage, teams, business units, services etc.
+        - In *Standard Edition* can grant teams access to groups/projects.
