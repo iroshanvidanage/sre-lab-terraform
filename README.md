@@ -978,7 +978,11 @@ terraform plan -generate-config-out=generated.tf
         - Each user can belong to multiple orgs, which might subscribe to different billing plans.
     2. Workspace - Manages infrastructure with workspaces instead of directories.
         - An org can have multiple workspaces.
-        - The workspace doesn't contain the tf configuration files, instead it links to the appropriated git repo and fetch the code to execute.
+        - Has 3 Workflow types,
+            - Version Control Workflow
+            - CLI-Driven Workflow
+            - API-Driven Workflow
+        - The Version Control workspace doesn't contain the tf configuration files, instead it links to the appropriated git repo and fetch the code to execute.
 
     | Component | Local | HCP Terraform |
     | ----- | ----- | ----- |
@@ -992,3 +996,14 @@ terraform plan -generate-config-out=generated.tf
         - Can structure your projects based on the org resource usage, teams, business units, services etc.
         - In *Standard Edition* can grant teams access to groups/projects.
     4. Registry - Can store modules in the private registry.
+
+
+### CLI-Driven Workflow
+
+- In this workflow, the local working directory is linked with HCP Workspace.
+- The configuration file can be present in your local directory and the executions can be initiated from the local workstation.
+- Once the execution is initiated, the it will be running in the HCP terraform and the output will be streamed from the local terminal.
+- The creds configured in the workspace are used.
+- Configuration should be done as mentioned in [cli-workflow.tf](cli-workflow.tf) file.
+- Login: need to login to the HCP terraform from the terminal. `terraform login`
+
