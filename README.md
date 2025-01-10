@@ -62,6 +62,8 @@ provider "aws" {
 
 - Else can execute `terraform init -upgrade` which will update the _.terraform.lock.hcl_ file with new configuration.
 
+> [!IMPORTANT]
+> Terraform's default behavior is selecting the provider based on the resource type name.
 
 ## Terraform Settings
 
