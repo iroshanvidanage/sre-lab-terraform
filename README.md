@@ -1028,3 +1028,7 @@ terraform plan -generate-config-out=generated.tf
 - Terraform Enterprise installs using either an online or gapped method and as the names infer, one requires internet connectivity, the other does not.
 - If air gapped method is used for installing, need to provide the path/ or upload the Airgap bundle.
 
+
+## Terraform Challenges
+
+- Challenge repo from [ZealVora](https://github.com/zealvora/kplabs-terraform-challenges.git).
