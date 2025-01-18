@@ -1,5 +1,11 @@
+# root folder
 terraform.tfstate
-/.terraform
 terraform.tfstate.backup
 *.pem
 crash.log
+
+# sub folders
+/**/.terraform
+/**/terraform.tfstate
+/**/terraform.tfstate.backup
+/**/.terraform.lock.hcl
