@@ -182,6 +182,7 @@ module "module_name" {
 
 - Terraform loads variables in the following order highest precedence will be the first one
     - -var / -var-file options on the cli.
+        - `terraform plan -var='splunk=8089'`
     - *.auto.tfvars / *.auto.tfvars.json processed in lexical order
     - terraform.tfvars.json
     - terraform.tfvars
