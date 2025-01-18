@@ -1,31 +1,3 @@
-terraform {
-  required_providers {
-    aws = {
-      source = "hashicorp/aws"
-    }
-  }
-}
-
-provider "aws" {
-  region = var.region
-}
-
-variable "splunk" {
-  default = "8088"
-}
-
-variable "payment_app_cidr" {
-  default = "172.31.0.0/16"
-}
-
-variable "region" {
-  default = "us-east-1"
-}
-
-variable "environment" {
-  default = "DEV"
-}
-
 resource "aws_security_group" "security_group_payment_app" {
   name        = "payment_app"
   description = "Application Security Group"
@@ -70,22 +42,4 @@ resource "aws_security_group" "security_group_payment_app" {
     )
   )
 
-}
-
-resource "aws_eip" "example" {
-  domain = "vpc"
-
-  tags = merge(local.common_tags,
-    tomap(
-      { "Category" = "Public" }
-    )
-  )
-}
-
-locals {
-  common_tags = {
-    Environment = var.environment
-    Terraform   = true
-    MangedBy    = "CSRE"
-  }
 }
