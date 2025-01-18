@@ -229,6 +229,10 @@ module "module_name" {
 - In a sense similar to variables, but can do more in locals.
 - But in locals can add expressions, which allows you to compute values dynamically.
 
+> [!IMPORTANT]
+> In Terraform, you can't directly use data source references within a variable block's default attribute. The default attribute of a variable must be a static value, and cannot depend on the values of other resources or data sources because variable declarations are processed before any resources or data sources.
+> However, you can achieve this by defining a locals block instead, which can reference data sources and other resources.
+
 
 ## Data Sources
 
