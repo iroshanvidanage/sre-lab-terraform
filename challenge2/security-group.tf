@@ -5,26 +5,26 @@ resource "aws_security_group" "security_group_payment_app" {
 
   # Below ingress allows HTTPS  from DEV VPC
   ingress {
-    from_port   = 443
-    to_port     = 443
+    from_port   = var.https
+    to_port     = var.https
     protocol    = "tcp"
-    cidr_blocks = [var.payment_app_cidr]
+    cidr_blocks = [var.vpc]
   }
 
   # Below ingress allows APIs access from DEV VPC
 
   ingress {
-    from_port   = 8080
-    to_port     = 8080
+    from_port   = var.dev_api
+    to_port     = var.dev_api
     protocol    = "tcp"
-    cidr_blocks = [var.payment_app_cidr]
+    cidr_blocks = [var.vpc]
   }
 
   # Below ingress allows APIs access from Prod App Public IP.
 
   ingress {
-    from_port   = 8443
-    to_port     = 8443
+    from_port   = var.prod_api
+    to_port     = var.prod_api
     protocol    = "tcp"
     cidr_blocks = ["${aws_eip.example.public_ip}/32"]
   }
