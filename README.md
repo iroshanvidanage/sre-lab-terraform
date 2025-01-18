@@ -1007,3 +1007,11 @@ terraform plan -generate-config-out=generated.tf
 - Configuration should be done as mentioned in [cli-workflow.tf](cli-workflow.tf) file.
 - Login: need to login to the HCP terraform from the terminal. `terraform login`
 
+
+## Sentinel
+
+- Sentinel is a policy-as-code framework integrated with the HashiCorp Enterprise products.
+- Can implement fine-grained, logic-based policy decisions, and can be extended to use information from external sources.
+- Sentinel policies are paid features.
+- Sentinel documentation [here](https://developer.hashicorp.com/terraform/tutorials/policy/sentinel-policy).
+
