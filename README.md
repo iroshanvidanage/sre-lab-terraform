@@ -434,7 +434,7 @@ digraph G {
 
 | Meta-Argument | Description |
 |-----------|---------|
-| depends_on | Handle hidden resource or module dependecies that Terraform cannot automatically infer. |
+| depends_on | Handle hidden resource or module dependencies that Terraform cannot automatically infer. |
 | count | Accepts a whole number, and creates that many instances of the resource |
 | for_each | Accepts a map or set of strings, and creates an instance for each item in that map or set. |
 | lifecycle | Allows modification of the resouce lifecycle. |
@@ -966,11 +966,53 @@ terraform plan -generate-config-out=generated.tf
 ## Dependency Lock file
 
 - Provider plugins and Terraform are managed independently and have different release cycle.
-- Version constraints within the configuration itself determine which versions of dependecies are potentially compatible.
+- Version constraints within the configuration itself determine which versions of dependencies are potentially compatible.
 - When installing a provider for the first time, terraform will pre-populate the hashes value with checksums that are covered by the provider developer's cryptographic signature, which usually covers all of the available packages for that provider version across all supported platforms.
 
 > [!IMPORTANT]
 > Terraform does not remember version selections for remote modules, and so Terraform will always select the newest available module version that meets the specified version constraints.
+
+
+## Resource Dependency
+
+- Some infrastructure requires some infrastrutures to be created before the latter infra is created, for this you can use the `depends_on` Meta Argument.
+
+```terraform
+resource "aws_instance" "web-instance" {
+  ami           = var.ami
+  instance_type = "t3.micro"
+  depends_on = [aws_s3_bucket.web-bucket]
+}
+
+resource "aws_s3_bucket" "web-bucket" {
+  bucket = "web-frontend-s3-bucket"
+}
+```
+
+- Order of Creation:
+    - The meta-argument explicitly graphs that the s3 bucket should be created before the ec2 instance is created.
+
+- Order of Destroy:
+    - The order is reversed and ensures the dependencies are not broken. The ec2 will be removed first and then the bucket will be removed.
+
+
+### Implicit vs Explicit Dependency
+
+- Explicit: Declared using the `depends_on` meta-argument. This is **_used when there's no direct attribute reference_**, but still need to control the order of the resource creation.
+
+- Implicit: Terraform can automatically find references of the object and create an implicit ordering requirments.
+
+```terraform
+resource "aws_instance" "web-instance" {
+  ami           = var.ami
+  instance_type = "t3.micro"
+  vpc_security_group_ids = [aws_security_group.web-frontend-sg.id]
+}
+
+resource "aws_security_group" "web-frontend-sg" {
+  name = "web-frontend-sg"
+}
+```
 
 
 ## HCP Terraform Cloud
